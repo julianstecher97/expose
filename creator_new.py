@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
+from tkinter import ttk
 from fpdf import FPDF
 from pdf2image import convert_from_bytes
 from PIL import ImageTk, Image
@@ -7,22 +8,36 @@ import os
 import platform
 import csv
 
+
+folder_name ="Wohnung-Gardasee"
+
 # ### ToDo
-# Bilder automatisch vom folder laden
+# Bilder automatisch vom folder laden -> Done
 # fix text abstrahieren
-# italienische und englische version vorbereiten
-# grfisch switch zwischen sprachen machen
+# italienische und englische version vorbereiten -> csv |key|De|It|En|
+# grfisch switch zwischen sprachen machen -> dropdown
 
 
-def load_data_from_csv(file_path):
+def load_data_from_csv(file_path, lang="it"):
     data = {}
     with open(file_path, newline="", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
-        for row in reader:
-            key, value = row
-            data[key.strip()] = value.strip()
+        if lang=="de":
+            for row in reader:
+                key = row[0]
+                data[key] = row[1].strip()
+                
+        if lang=="it":
+            for row in reader:
+                key = row[0]
+                data[key] = row[2].strip()
+                
+        if lang=="en":
+            for row in reader:
+                key = row[0]
+                data[key] = row[3].strip()
+                
     return data
-
 
 pages = {
     "ECKDATEN": 999,
@@ -33,6 +48,10 @@ pages = {
     "FLÄCHENBEREC": 999,
     "ANSPRECHPARTNER": 999,
 }
+global lang 
+lang ="de"
+global text_list 
+text_list = load_data_from_csv("Allgemein/DatenAllgemein.csv")
 
 
 class ExposePDF(FPDF):
@@ -62,11 +81,11 @@ class ExposePDF(FPDF):
            self.set_font("DejaVu", "I", 8)
 
            # Left-aligned "PREMIUM HOMES"
-           self.cell(0, 10, "PREMIUM HOMES", align="L")
+           self.cell(0, 10, text_list["SUBTITLE"], align="L")
 
            # Page number right-aligned
            self.set_x(-30)
-           self.cell(0, 10, f"Seite {self.page_no()-2}", align="R")
+           self.cell(0, 10, f"{text_list["PAGE"]} {self.page_no()-2}", align="R")
 
 
 def list_single(pdf, left, line=False):
@@ -165,8 +184,12 @@ def page_title(pdf, csv_data, title):
 
 
 def create_pdf():
+    
+    
+    
     pdf = ExposePDF()
-    csv_data = load_data_from_csv("Daten.csv")
+    pdf.footer()
+    csv_data = load_data_from_csv(folder_name+"/Daten.csv",lang)
 
     # First Page
     pdf.add_page()
@@ -174,7 +197,7 @@ def create_pdf():
     pdf.ln(2)
     pdf.image("Allgemein/logo.jpeg", x=(210 - 60) / 2, w=60)
     pdf.ln(5)
-    pdf.image(csv_data["TITEL_BILD"], x=(210 - 180) / 2, w=180)
+    pdf.image(csv_data["EINDRUCK_ORDNER"]+"/"+csv_data["TITEL_BILD"], x=(210 - 180) / 2, w=180)
     pdf.ln(2)
     pdf.multi_cell(
         0,
@@ -184,39 +207,39 @@ def create_pdf():
     )
     pdf.ln(5)
     left = [
-        ("ART", csv_data["OBJEKTTYP"]),
-        ("ANZAHL ZIMMER", csv_data["ANZAHLZIMMER"]),
+        (text_list["TYPE"]                  ,csv_data["OBJEKTTYP"]),
+        (text_list["ROOM_FOR_PAYMENT"]      , csv_data["ANZAHLZIMMER"]),
     ]
 
     right = [
-        ("HANDELSFLÄCHE", csv_data["HANDELSFLÄCHE"]),
-        ("KAUFPREIS", csv_data["KAUFPREISIMMOBILIE"]),
+        (text_list["RETAIL_SPACE"], csv_data["HANDELSFLÄCHE"]),
+        (text_list["PURCHASE_PRICE"], csv_data["KAUFPREISIMMOBILIE"]),
     ]
 
     list_double(pdf, left=left, right=right, line=True)
     pdf.ln(40)
     pdf.set_font("DejaVu", "B", 11)
     pdf.set_y(-40)
-    pdf.cell(0, 5, "FABIAN PERNTHALER", ln=True, align="L")
+    pdf.cell(0, 5,text_list["ESTATE_AGENT"], ln=True, align="L")
 
     pdf.set_font("DejaVu", "", 11)
-    pdf.cell(0, 5, "f.pernthaler@premium-homes.it", ln=False, align="L")
-    pdf.cell(0, 5, "www.premium-homes.it", ln=True, align="R")
-    pdf.cell(0, 5, "+39 347 4734794 | DE, IT, EN", ln=False, align="L")
-    pdf.cell(0, 5, "@premiumhomes.lakegarda", ln=True, align="R")
+    pdf.cell(0, 5,text_list["EMAIL"] , ln=False, align="L")
+    pdf.cell(0, 5,text_list["WEBSITE"] , ln=True, align="R")
+    pdf.cell(0, 5,text_list["TELEPHONE"] , ln=False, align="L")
+    pdf.cell(0, 5,text_list["COMPANY"] , ln=True, align="R")
 
     # Table of Contents
     pdf.add_page()
     page_title(pdf=pdf, csv_data=csv_data, title="ÜBERSICHT")
 
     left = [
-        ("ECKDATEN", "Seite" + pages["ECKDATEN"].__str__()),
-        ("BESCHREIBUNG", "Seite" + pages["BESCHREIBUNG"].__str__()),
-        ("EINDRÜCKE", "Seite" + pages["EINDRÜCKE"].__str__()),
-        ("LAGEBESCHREIBUNG", "Seite" + pages["LAGEBESCHREIBUNG"].__str__()),
-        ("GRUNDRISSE", "Seite" + pages["GRUNDRISSE"].__str__()),
-        ("FLÄCHENBERECHNUNG IM ÜBERBLICK", "Seite" + pages["FLÄCHENBEREC"].__str__()),
-        ("ANSPRECHPARTNER", "Seite" + pages["ANSPRECHPARTNER"].__str__()),
+        (text_list["KEY_DATA"], text_list["PAGE"] + pages["ECKDATEN"].__str__()),
+        (text_list["DESCRIPTION"], text_list["PAGE"] + pages["BESCHREIBUNG"].__str__()),
+        (text_list["IMPRESSIONS"], text_list["PAGE"] + pages["EINDRÜCKE"].__str__()),
+        (text_list["LOCATION_DESCRIPTION"], text_list["PAGE"] + pages["LAGEBESCHREIBUNG"].__str__()),
+        (text_list["FLOOR_PLANS"], text_list["PAGE"] + pages["GRUNDRISSE"].__str__()),
+        (text_list["AREA_CALCULATION"],text_list["PAGE"] + pages["FLÄCHENBEREC"].__str__()),
+        (text_list["CONTACT_PERSON"], text_list["PAGE"] + pages["ANSPRECHPARTNER"].__str__()),
     ]
 
     list_single(pdf, left=left, line=True)
@@ -257,28 +280,28 @@ def create_pdf():
     pdf.add_page()
     pages["ECKDATEN"] = int(pdf.get_page_label()) -2 
 
-    page_title(pdf=pdf, csv_data=csv_data, title="Eckdaten")
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["KEY_DATA"].upper())
 
     left = [
-        ("OBJEKTTYP", csv_data["OBJEKTTYP"]),
-        ("ANZAHL ZIMMER", csv_data["ANZAHLZIMMER"]),
-        ("ANZAHL SCHLAFZIMMER", csv_data["ANZAHLSCHLAFZIMMER"]),
-        ("ANZAHL BADEZIMMER", csv_data["ANZAHLBADEZIMMER"]),
-        ("BRUTTOFLÄCHE", csv_data["BRUTTOFLÄCHE"]),
-        ("HANDELSFLÄCHE", csv_data["HANDELSFLÄCHE"]),
-        ("KAUFPREIS IMMOBILIE", csv_data["KAUFPREISIMMOBILIE"]),
-        ("FAHRSTUHL", csv_data["FAHRSTUHL"]),
+        ( text_list["PROPERTY_TYPE"].upper()                , csv_data["OBJEKTTYP"]),
+        ( text_list["ROOM_FOR_PAYMENT"].upper()             , csv_data["ANZAHLZIMMER"]),
+        ( text_list["BEDROOM_FOR_PAYMENT"].upper()          , csv_data["ANZAHLSCHLAFZIMMER"]),
+        ( text_list["BATHROOM_FOR_PAYMENT"].upper()         , csv_data["ANZAHLBADEZIMMER"]),
+        ( text_list["GROSS_AREA"].upper()                   , csv_data["BRUTTOFLÄCHE"]),
+        ( text_list["RETAIL_SPACE"].upper()                 , csv_data["HANDELSFLÄCHE"]),
+        ( text_list["PURCHASE_PRICE_PROPERTY"].upper()      , csv_data["KAUFPREISIMMOBILIE"]),
+        ( text_list["ELEVATOR"].upper()                     , csv_data["FAHRSTUHL"]),
     ]
 
     right = [
-        ("PKW STELLFLÄCHEN", csv_data["PKWSTELLFLÄCHEN"]),
-        ("KAUFPREIS GARAGE", csv_data["KAUFPREISGARAGE"]),
-        ("ETAGE", csv_data["ETAGE"]),
-        ("HEIZUNGSART", csv_data["HEIZUNGSART"]),
-        ("KLIMATISIERUNG", csv_data["KLIMATISIERUNG"]),
-        ("ENERGIETRÄGER", csv_data["ENERGIETRÄGER"]),
-        ("ENERGIEEFFIZIENZKLASSE", csv_data["ENERGIEEFFIZIENZKLASSE"]),
-        ("ENERGIELEISTUNGSINDEX", csv_data["ENERGIELEISTUNGSINDEX"]),
+        (text_list["PARKING_SPACE"].upper()                   , csv_data["PKWSTELLFLÄCHEN"]),
+        (text_list["PURCHASE_PRICE_GARAGE"].upper()           , csv_data["KAUFPREISGARAGE"]),
+        (text_list["FLOOR"].upper()                           , csv_data["ETAGE"]),
+        (text_list["TYPE_OF_HEATING"].upper()                 , csv_data["HEIZUNGSART"]),
+        (text_list["AIR_CONDITIONING"].upper()                , csv_data["KLIMATISIERUNG"]),
+        (text_list["ENERGY_SOURCE"].upper()                   , csv_data["ENERGIETRÄGER"]),
+        (text_list["ENERGY_EFFICIENCY_CLASS"].upper()         , csv_data["ENERGIEEFFIZIENZKLASSE"]),
+        (text_list["ENERGY_PERFORMANCE_INDEX"].upper()        , csv_data["ENERGIELEISTUNGSINDEX"]),
     ]
 
     list_double(pdf, left=left, right=right, line=True)
@@ -316,13 +339,13 @@ def create_pdf():
     pdf.add_page()
 
     pages["BESCHREIBUNG"] = int(pdf.get_page_label()) -2 
-    page_title(pdf=pdf, csv_data=csv_data, title="BESCHREIBUNG")
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["DESCRIPTION"].upper())
 
     pdf.multi_cell(0, 5, csv_data["BESCHREIBUNG"], align="L", markdown=True)
     pdf.ln(10)
 
     pdf.add_page()
-    page_title(pdf=pdf, csv_data=csv_data, title="GUT ZU WISSEN")
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["GOOD_TO_KNOW"].upper())
     
     pdf.set_font("DejaVu", "", 11)
     pdf.multi_cell(0, 5, csv_data["AUSSTATTUNG"], align="L")
@@ -352,7 +375,7 @@ def create_pdf():
     for i in range(0, len(image_files), 2):
         pdf.add_page()
         pdf.set_y(pdf.get_y()-5)
-        page_title(pdf=pdf, csv_data=csv_data, title="EINDRÜCKE")
+        page_title(pdf=pdf, csv_data=csv_data, title=text_list["IMPRESSIONS"].upper() )
         for j in range(2):
             if i + j < len(image_files):
                 img_path = image_files[i + j]
@@ -380,14 +403,14 @@ def create_pdf():
     # LAGEBESCHREIBUNG
     pdf.add_page()
     pages["LAGEBESCHREIBUNG"] = int(pdf.get_page_label()) -2 
-    page_title(pdf=pdf, csv_data=csv_data, title="LAGEBESCHREIBUNG")
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["LOCATION_DESCRIPTION"].upper())
     pdf.multi_cell(0, 5, csv_data["LAGEBESCHREIBUNG"], align="L")
 
     pdf.ln(20)
     left = [
-        ("DIST. AUTOBAHN (KM)", csv_data["DIST.AUTOBAHN(KM)"]),
-        ("DIST. ZENTRUM (KM)", csv_data["DIST.ZENTRUM(KM)"]),
-        ("DIST. FLUGHAFEN (KM)", csv_data["DIST.FLUGHAFEN(KM)"]),
+        (text_list["HIGHWAY"].upper()   , csv_data["DIST.AUTOBAHN(KM)"]),
+        (text_list["CENTER"].upper()    , csv_data["DIST.ZENTRUM(KM)"]),
+        (text_list["AIRPORT"].upper()   , csv_data["DIST.FLUGHAFEN(KM)"]),
     ]
 
     list_double(pdf, left=left, right=[], line=True)
@@ -417,7 +440,7 @@ def create_pdf():
     for i in range(0, len(image_files), 2):
         pdf.add_page()
         pdf.set_y(pdf.get_y()-5)
-        page_title(pdf=pdf, csv_data=csv_data, title="GRUNDRISSE")
+        page_title(pdf=pdf, csv_data=csv_data, title=text_list["FLOOR_PLANS"].upper())
         for j in range(2):
             if i + j < len(image_files):
                 img_path = image_files[i + j]
@@ -449,7 +472,7 @@ def create_pdf():
     # FLÄCHENBERECHNUNG IM ÜBERBLICK
     pdf.add_page()
     pages["FLÄCHENBEREC"] = int(pdf.get_page_label()) -2 
-    page_title(pdf=pdf, csv_data=csv_data, title="FLÄCHENBERECHNUNG IM ÜBERBLICK")
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["AREA_CALCULATION_OVERVIEW"].upper())
 
     pdf.multi_cell(
         0,
@@ -599,6 +622,20 @@ save_button.pack(side="left", padx=10, pady=5)
 
 refresh_button = tk.Button(top_frame, text="Refresh Preview", command=show_preview)
 refresh_button.pack(side="left", padx=10, pady=5)
+
+def on_language_change(event):
+    selected_lang = lang_var.get()
+    print(f"Language changed to: {selected_lang}")
+    global text_list 
+    global lang
+    lang = selected_lang
+    text_list = load_data_from_csv("Allgemein/DatenAllgemein.csv",selected_lang)
+
+lang_var = tk.StringVar(value="de")
+lang_dropdown = ttk.Combobox(top_frame, textvariable=lang_var, values=["de", "it", "en"], state="readonly", width=5)
+lang_dropdown.pack(side="left", padx=10, pady=5)
+lang_dropdown.bind("<<ComboboxSelected>>", on_language_change)
+
 
 # Create canvas
 canvas = tk.Canvas(root, width=600, height=700)
