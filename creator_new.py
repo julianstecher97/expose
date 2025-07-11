@@ -8,7 +8,7 @@ import os
 import platform
 import csv
 
-
+global folder_name
 folder_name ="Wohnung-Gardasee"
 
 # ### ToDo
@@ -18,7 +18,7 @@ folder_name ="Wohnung-Gardasee"
 # grfisch switch zwischen sprachen machen -> dropdown
 
 
-def load_data_from_csv(file_path, lang="it"):
+def load_data_from_csv(file_path, lang="de"):
     data = {}
     with open(file_path, newline="", encoding="utf-8") as csvfile:
         reader = csv.reader(csvfile)
@@ -635,6 +635,28 @@ lang_var = tk.StringVar(value="de")
 lang_dropdown = ttk.Combobox(top_frame, textvariable=lang_var, values=["de", "it", "en"], state="readonly", width=5)
 lang_dropdown.pack(side="left", padx=10, pady=5)
 lang_dropdown.bind("<<ComboboxSelected>>", on_language_change)
+
+def get_local_folders(base_path="."):
+    excluded = {"Allgemein", "backup", "Barlow-fontiko", "dist", "build", ".git"}
+    return [
+        f for f in os.listdir(base_path)
+        if os.path.isdir(os.path.join(base_path, f)) and f not in excluded
+    ]
+def on_folder_change(event):
+    selected_folder = folder_var.get()
+    print(f"Folder selected: {selected_folder}")
+
+    global folder_name
+    folder_name =selected_folder
+
+
+folder_var = tk.StringVar()
+folders = get_local_folders(".")  # You can change "." to any path
+
+folder_dropdown = ttk.Combobox(top_frame, textvariable=folder_var, values=folders, state="readonly", width=30)
+folder_dropdown.pack(side="left", padx=10, pady=5)
+folder_dropdown.bind("<<ComboboxSelected>>", on_folder_change)
+
 
 
 # Create canvas
