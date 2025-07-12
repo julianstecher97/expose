@@ -85,7 +85,7 @@ class ExposePDF(FPDF):
 
            # Page number right-aligned
            self.set_x(-30)
-           self.cell(0, 10, f"{text_list["PAGE"]} {self.page_no()-2}", align="R")
+#           self.cell(0, 10, f"{text_list["PAGE"]} {self.page_no()-2}", align="R")
 
 
 def list_single(pdf, left, line=False):
