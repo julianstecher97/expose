@@ -5,25 +5,85 @@ ROOF TERRACE IN THE IMMEDIATE VICINITY OF THE LAKE"
 UNTERTITEL,PH160 - Desenzano del Garda,IT PH160 - Desenzano del Garda,PH160 - Desenzano del Garda
 TITEL_BILD,titel_bild.jpeg,titel_bild.jpeg,titel_bild.jpeg
 EINDRUCK_ORDNER,Wohnung-Gardasee,Wohnung-Gardasee,Wohnung-Gardasee
-OBJEKTTYP,Wohnung,Wohnung,Wohnung
-ANZAHLZIMMER,10,10,10
-ANZAHLSCHLAFZIMMER,2,2,2
-ANZAHLBADEZIMMER,2,2,2
-BRUTTOFLÄCHE,90 m²,90 m²,90 m²
-HANDELSFLÄCHE,150 m²,150 m²,150 m²
-KAUFPREISIMMOBILIE,575.000 EUR,575.000 EUR,575.000 EUR
-FAHRSTUHL,ja,ja,ja
-PKWSTELLFLÄCHEN,Doppelgarage,Doppio garage,Double garage
-KAUFPREISGARAGE,Inkludiert,Incluso,Included
-ETAGE,2. Etage,2° piano,2nd floor
-HEIZUNGSART,Fußbodenheizung,Riscaldamento a pavimento,Underfloor heating
-KLIMATISIERUNG,moderne Splitgeräte,Moderni elettrodomestici split,Modern split appliances
-ENERGIETRÄGER,Wärmepumpe,Pompa di calore,Heat pump
-ENERGIEEFFIZIENZKLASSE,"Legge 90/2013, A","Legge 90/2013, A","Legge 90/2013, A"
-ENERGIELEISTUNGSINDEX,"72,82 kWh/m²a","72,82 kWh/m²a","72.82 kWh/m²a"
-BESCHREIBUNG,Erleben Sie hochwertiges Wohnen in dieser modernen Attika-Wohnung,Vivete un'esperienza di alta qualità in questo moderno appartamento attico,Experience high-quality living in this modern penthouse apartment
-AUSSTATTUNG,- Die Einbauküche ist im Kaufpreis nicht inkludiert und kann für 2,- La cucina attrezzata non è inclusa nel prezzo di acquisto e può essere affittata per 2,- The fitted kitchen is not included in the purchase price and can be rented for 2
-LAGEBESCHREIBUNG,Diese traumhafte Attika Wohnung befinde,Questo fantastico attico è situato,This fantastic penthouse apartment is located
-DIST.AUTOBAHN(KM),4 km,4 km,4 km
-DIST.ZENTRUM(KM),"1,2 km","1,2 km","1,2 km"
-DIST.FLUGHAFEN(KM),30 km,30 km,30 km
+PROPERTY_TYPE,Wohnung,Wohnung,Wohnung
+ROOM_FOR_PAYMENT,10,10,10
+BEDROOM_FOR_PAYMENT,2,2,2
+BATHROOM_FOR_PAYMENT,2,2,2
+GROSS_AREA,90 m²,90 m²,90 m²
+RETAIL_SPACE,150 m²,150 m²,150 m²
+PURCHASE_PRICE,575.000 EUR,575.000 EUR,575.000 EUR
+ELEVATOR,ja,ja,ja
+PARKING_SPACE,Doppelgarage,Doppio garage,Double garage
+PURCHASE_PRICE_GARAGE,Inkludiert,Incluso,Included
+FLOOR,2. Etage,2° piano,2nd floor
+TYPE_OF_HEATING,Fußbodenheizung,Riscaldamento a pavimento,Underfloor heating
+AIR_CONDITIONING,moderne Splitgeräte,Moderni elettrodomestici split,Modern split appliances
+ENERGY_SOURCE,Wärmepumpe,Pompa di calore,Heat pump
+ENERGY_EFFICIENCY_CLASS,"Legge 90/2013, A","Legge 90/2013, A","Legge 90/2013, A"
+ENERGY_PERFORMANCE_INDEX,"72,82 kWh/m²a","72,82 kWh/m²a",72.82 kWh/m²a
+DESCRIPTION,"Erleben Sie hochwertiges Wohnen in dieser modernen Attika-Wohnung in einer ansprechenden und kürzlich erbauten Residenz in unmittelbarer Seenähe von Rivoltella.
+
+Diese neuwertige Wohnung bietet höchsten Wohnkomfort und besticht durch Ihre großzügigen Außenflächen, den riesigen Pool und der hervorragenden Lage.
+
+Die Wohnung verfügt über ein großzügiges Wohnzimmer mit offener Küche und Zugang zur Loggia, ideal für gesellige Abende und entspannte Stunden. Das Hauptschlafzimmer ist mit einem eigenen Bad en Suite ausgestattet, während ein zweites Schlafzimmer und ein weiteres Bad zusätzlichen Komfort bieten. Ein weiterer Balkon mit anliegenden Abstellraum und ein Atrium, von dem aus eine Treppe zur großzügigen Dachterrasse führt, vervollständigen das Raumangebot. Auf der Dachterrasse genießen Sie einen teilweisen Seeblick und die umliegende Naturlandschaft, die zum Entspannen und Verweilen einlädt. Zusätzlich besteht die Möglichkeit, einen Whirlpool auf der Dachterrasse anzubringen.
+
+Die Wohnung wurde in der Energieklasse A3 realisiert und ist mit modernsten Technologien ausgestattet. Dazu gehören Fußbodenheizung, Klimatisierung in allen Wohn- und Schlafbereichen, eine Photovoltaikanlage und automatische Wohnraumlüftung. Elektrische Rollläden und ein Aufzug sorgen für zusätzlichen Komfort und Sicherheit.
+
+Zur Wohnung gehört eine große Garage mit Platz für zwei Autos und zusätzlicher Staufläche, welche im Kaufpreis inkludiert ist. Dies bietet nicht nur Sicherheit für Ihre Fahrzeuge, sondern auch zusätzlichen Stauraum für Ihre persönlichen Gegenstände. 
+
+Alle wichtigen Dienstleistungen sind in unmittelbarer Nähe vorhanden. Ein Strand ist fußläufig in nur 10 Minuten erreichbar, und der See ist nur 200 Meter Luftlinie entfernt. 
+
+Die 10 % Mehrwertsteuer als Zweitwohnsitz auf den Kaufpreis entfallen bei dieser Wohnung, da es sich um einen Privatverkauf handelt und nicht um einen Erwerb direkt vom Bauträger. 
+
+Diese Attika-Wohnung ist die perfekte Wahl für alle, die modernen Komfort, großzügige Außenflächen und eine erstklassige Lage zu schätzen wissen. Ob als Hauptwohnsitz oder als Ferienwohnung - diese Immobilie bietet Ihnen alles, was Sie sich wünschen.
+
+Vereinbaren Sie noch heute einen Besichtigungstermin und überzeugen Sie sich selbst von dieser außergewöhnlichen Wohnung!","Vivete un'esperienza di alta qualità in questo moderno attico in un attraente residence di recente costruzione vicino al lago a Rivoltella.
+
+L'appartamento dispone di un ampio garage con spazio per due auto e un ulteriore spazio di archiviazione, incluso nel prezzo di acquisto. Questo non solo offre sicurezza per i vostri veicoli, ma anche spazio aggiuntivo per i vostri effetti personali.
+
+Tutti i servizi più importanti sono disponibili nelle immediate vicinanze. Una spiaggia è raggiungibile a piedi in soli 10 minuti e il lago dista solo 200 metri in linea d'aria.
+
+L'IVA del 10% come seconda casa sul prezzo di acquisto non si applica a questo appartamento, in quanto si tratta di una vendita privata e non di un acquisto diretto dal promotore immobiliare.
+
+Questo attico è la scelta perfetta per chi apprezza il comfort moderno, un ampio spazio esterno e una posizione di prim'ordine. Sia come residenza principale che come casa per le vacanze, questa proprietà offre tutto ciò che si può desiderare.
+
+Fissate oggi stesso una visita per vedere di persona questo eccezionale appartamento!
+Questo appartamento nuovo offre il massimo comfort abitativo e colpisce per gli ampi spazi esterni, la grande piscina e l'eccellente posizione.
+
+L'appartamento dispone di un ampio soggiorno con cucina a vista e accesso alla loggia, ideale per serate accoglienti e ore di relax. La camera da letto principale ha il suo bagno privato, mentre una seconda camera da letto e un altro bagno offrono ulteriore comfort. Un ulteriore balcone con annesso ripostiglio e un atrio, dal quale una scala conduce alla spaziosa terrazza sul tetto, completano l'offerta di spazio. Dalla terrazza sul tetto si gode di una vista parziale sul lago e sul paesaggio naturale circostante, che invita a rilassarsi e a soffermarsi. C'è anche la possibilità di installare una vasca idromassaggio sulla terrazza sul tetto.
+
+L'appartamento è stato realizzato in classe energetica A3 ed è dotato di tecnologie all'avanguardia. Tra queste, il riscaldamento a pavimento, l'aria condizionata in tutte le zone giorno e notte, l'impianto fotovoltaico e la ventilazione automatica. Le tapparelle elettriche e l'ascensore garantiscono ulteriore comfort e sicurezza.
+",Experience high-quality living in this modern penthouse apartment
+AUSSTATTUNG,"- Die Einbauküche ist im Kaufpreis nicht inkludiert und kann für 20.000EUR abgelöst werden. Die Küche wurde hochwertig in Granitplatte, Herd mit Abzug, Kühl/Gefrierkombi, Backofen mit integriertem Dampfgarer, realisiert.
+- Fußbodenheizung, Klimatisierung in allen Wohn- und Schlafbereichen, Photovoltaikanlage, automatische Wohnraumlüftung und mit Vorrichtungen für eine Alarmanlage und für Smart
+- Home, sowie elektrische Rolläden.
+- Aufzug.
+- Videosprechanlage.
+- 25m langer Pool mit Terrasse und gepflegter Gartenanlage.
+- Glasfaser Anschluss.","- La cucina attrezzata non è inclusa nel prezzo di acquisto e può essere sostituita per 20.000 euro. La cucina è stata realizzata ad alto livello con piano in granito, piano cottura con estrattore, frigorifero/congelatore, forno con forno a vapore integrato.
+- Riscaldamento a pavimento, aria condizionata in tutte le zone giorno e notte, impianto fotovoltaico, ventilazione automatica del soggiorno e dispositivi per un sistema di allarme e smart home, oltre a tapparelle elettriche.
+- casa, oltre a tapparelle elettriche.
+- Ascensore.
+- Sistema di videocitofono.
+- Piscina di 25 metri con terrazza e giardini ben curati.
+- Connessione in fibra ottica.",- The fitted kitchen is not included in the purchase price and can be rented for 2
+LOCATION_DESCRIPTION,"Diese traumhafte Attika Wohnung befindet sich in Rivoltella, einem charmanten Ortsteil von Desenzano del Garda, nur wenige Schritte vom Ufer des Gardasees entfernt. Die Lage vereint auf ideale Weise Ruhe, Naturnähe und erstklassige Anbindung an zwei der beliebtesten Orte am südlichen Gardasee: Desenzano und Sirmione. 
+                   
+Rivoltella besticht durch seine entspannte Atmosphäre, die Nähe zum Wasser und eine gute Infrastruktur mit Restaurants, Cafés, kleinen Läden und Wochenmarkt. Der hübsche kleine Hafen, die Seepromenade sowie die Nähe zu gepflegten Stränden machen den Ort besonders attraktiv für Feriengäste und Liebhaber des ""dolce vita"". 
+                   
+Nur wenige Minuten westlich liegt Desenzano del Garda - das lebendige Herz des südlichen Gardasees. Hier erwartet dich ein ganzjährig belebter Ort mit eleganten Boutiquen, einer einladenden Altstadt, Yachthafen, zahlreichen Bars, Restaurants und direktem Bahnanschluss nach Mailand und Verona. Desenzano ist eine perfekte Mischung aus italienischer Lebensfreude, Kultur und moderner Infrastruktur. 
+                   
+Östlich von Rivoltella befindet sich die berühmte Halbinsel Sirmione, die zu den bekanntesten Reisezielen am Gardasee gehört. Die Altstadt von Sirmione mit ihrer historischen Scaligerburg, den römischen Grotten des Catull und den charmanten Gassen zieht Besucher aus aller Welt an. Neben kulturellen Highlights bietet Sirmione auch erstklassige Thermen, feine Gastronomie und eine zauberhafte Atmosphäre direkt am Wasser. 
+                   
+Dank der zentralen Lage ist Rivoltella der ideale Ausgangspunkt, um sowohl das lebhafte Desenzano als auch das elegante Sirmione schnell und bequem zu erreichen - und gleichzeitig die Ruhe einer gepflegten Wohnlage am See zu genießen. Diese Immobilie ist daher nicht nur eine erstklassige Wahl für die Eigennutzung, sondern auch eine hervorragende Investition im Premiumsegment des Gardasees.","Questo attico da sogno si trova a Rivoltella, un affascinante quartiere di Desenzano del Garda, a pochi passi dalle rive del Lago di Garda. La posizione combina in modo ideale la tranquillità, la vicinanza alla natura e i collegamenti di prima classe con due delle città più famose del Lago di Garda meridionale: Desenzano e Sirmione.
+                   
+Rivoltella colpisce per la sua atmosfera rilassata, la vicinanza all'acqua e le buone infrastrutture con ristoranti, caffè, piccoli negozi e il mercato settimanale. Il grazioso porticciolo, il lungolago e la vicinanza a spiagge ben curate rendono la cittadina particolarmente attraente per i vacanzieri e gli amanti della “dolce vita”.
+                   
+A pochi minuti a ovest si trova Desenzano del Garda, il cuore vivace del Lago di Garda meridionale. Qui troverete una città vivace tutto l'anno con eleganti boutique, un invitante centro storico, un porto turistico, numerosi bar, ristoranti e collegamenti ferroviari diretti con Milano e Verona. Desenzano è un mix perfetto di gioia di vivere italiana, cultura e infrastrutture moderne.
+                   
+A est di Rivoltella si trova la famosa penisola di Sirmione, una delle più note destinazioni turistiche del Lago di Garda. Il centro storico di Sirmione, con il suo storico Castello Scaligero, le Grotte Romane di Catullo e gli incantevoli vicoli, attira visitatori da tutto il mondo. Oltre alle attrazioni culturali, Sirmione offre anche terme di prima classe, una cucina raffinata e un'atmosfera incantevole proprio sull'acqua.
+                   
+Grazie alla sua posizione centrale, Rivoltella è il punto di partenza ideale per raggiungere in modo facile e veloce sia la vivace Desenzano che l'elegante Sirmione, godendo allo stesso tempo della tranquillità di una curata zona residenziale sul lago. Questa proprietà non è solo una scelta di prima classe per l'occupazione, ma anche un eccellente investimento nel segmento premium del Lago di Garda.",This fantastic penthouse apartment is located
+HIGHWAY,4 km,4 km,4 km
+CENTER,"1,2 km","1,2 km","1,2 km"
+AIRPORT,30 km,30 km,30 km

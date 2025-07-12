@@ -1,4 +1,4 @@
-SUBTITLE,"PREMIUM HOMES","PREMIUM HOMES","PREMIUM HOMES"
+SUBTITLE,PREMIUM HOMES,PREMIUM HOMES,PREMIUM HOMES
 PAGE,Seite,Pagina,Page
 TYPE,ART,TIPO,TYPE
 ROOM_FOR_PAYMENT,ANZAHL ZIMMER,NUMERO DI CAMERE,NUMBER OF ROOMS
@@ -9,6 +9,7 @@ EMAIL,f.pernthaler@premium-homes.it,f.pernthaler@premium-homes.it,f.pernthaler@p
 WEBSITE,ww.premium-homes.it,ww.premium-homes.it,ww.premium-homes.it
 TELEPHONE,"+39 347 4734794 | DE, IT, EN","+39 347 4734794 | DE, IT, IT","+39 347 4734794 | DE, IT, EN"
 COMPANY,@premiumhomes.lakegarda,@premiumhomes. lakegarda,@premiumhomes. lakegarda
+OVERVIEW,ÜBERSICHTÜBERSICHTÜBERSICHT,"text_list[""KEY_DATA""].upper()","text_list[""KEY_DATA""].upper()"
 KEY_DATA,ECKDATEN,DATI SPECIFICI,SPECIFIC DATA
 DESCRIPTION,BESCHREIBUNG,DESCRIZIONE,DESCRIPTION
 IMPRESSIONS,EINDRÜCKE,INSIGHTS,INSIGHTS
@@ -45,9 +46,140 @@ ANCILLARY_SPACE_LIST,"[
         ""Garagen: ca. 50 %, nicht überdachte Stellplätze ca. 20%"",
         ""Gemeinsame Trennwände werden zur Hälfte eingerechnet"",
     ]",,
-,,,
-,,,
-,,,
-,,,
-,,,
-,,,
+CONTACT_PERSON_TEXT,"**FABIAN PERNTHALER**
+--f.pernthaler@premium-homes.it--
++39 347 4734794
+Sprachen | DE IT EN
+        
+Mit über sechs Jahren Erfahrung als Immobilienmakler und einem Bachelorabschluss in Facility Management & Immobilienwirtschaft bringe ich fundiertes Fachwissen und Leidenschaft für alles mit, was mit Immobilien und Menschen zu tun hat. Darüber hinaus habe ich durch meine frühere Arbeit in einem Architekturbüro wertvolle Einblicke in planerische und bauliche Aspekte gewonnen – entscheidende Details, die oft den Unterschied ausmachen.
+        
+Ich freue mich darauf, über Ihr Vorhaben zu sprechen.","**FABIAN PERNTHALER**
+--f.pernthaler@premium-homes.it--
++39 347 4734794
+Lingue | DE IT EN
+        
+Con oltre sei anni di esperienza come agente immobiliare e una laurea in Facility Management e Property Management, ho una solida conoscenza e passione per tutto ciò che ha a che fare con gli immobili e le persone. Inoltre, il mio precedente lavoro in uno studio di architettura mi ha dato una preziosa visione degli aspetti progettuali e costruttivi - dettagli cruciali che spesso fanno la differenza.
+        
+Non vedo l'ora di parlare con voi del vostro progetto.","**FABIAN PERNTHALER**
+--f.pernthaler@premium-homes.it--
++39 347 4734794
+Sprachen | DE IT EN
+        
+Mit über sechs Jahren Erfahrung als Immobilienmakler und einem Bachelorabschluss in Facility Management & Immobilienwirtschaft bringe ich fundiertes Fachwissen und Leidenschaft für alles mit, was mit Immobilien und Menschen zu tun hat. Darüber hinaus habe ich durch meine frühere Arbeit in einem Architekturbüro wertvolle Einblicke in planerische und bauliche Aspekte gewonnen – entscheidende Details, die oft den Unterschied ausmachen.
+        
+Ich freue mich darauf, über Ihr Vorhaben zu sprechen."
+CONTACT_PERSON_TEXT_BEFORE,eitere Informationen erhalten Sie über Ihren Ansprechpartner und eingetragenen Immobilienmakler Fabian Pernthaler.,eitere Informationen erhalten Sie über Ihren Ansprechpartner und eingetragenen Immobilienmakler Fabian Pernthaler.,eitere Informationen erhalten Sie über Ihren Ansprechpartner und eingetragenen Immobilienmakler Fabian Pernthaler.
+AREA_CALCULATION_TEXT,"Die sogenannte Handelsfläche – auch als Verkaufsfläche bezeichnet (italienisch: superficie commerciale) – ist ein standardisiertes Berechnungsverfahren, das beim Verkauf von Immobilien in Italien Anwendung findet.
+Es geht über die reine Wohnfläche hinaus und wird in der Regel von Immobilienportalen, in Werbematerialien und Exposés verwendet.
+
+**Innenräume**
+    • Die gesamte Wohnfläche inklusive Innen- und Außenwände wird berücksichtigt. 
+    • Gemeinsame Trennwände (z. B. zwischen zwei Einheiten) werden zur Hälfte angerechnet.
+
+**NEBENFLÄCHEN**
+
+Nebenflächen fließen anteilig mit reduzierten Bewertungsansätzen in die Verkaufsfläche ein. Die zugrunde liegenden Prozentsätze orientieren sich an marktüblichen Richtwerten und können je nach Objektart, Wertigkeit und Nutzbarkeit innerhalb eines gewissen Rahmens variieren:
+    • Kellerräume: ca. 35 %
+    • Tavernen und gut nutzbare Kellergeschosse: ca. 50 %
+    • Nebenflächen mit hoher Nutzbarkeit (z.B. gut nutzbare Untergeschossräume mit Tageslicht und wohnlicher Ausstattung): ca. 75 %
+    • Balkone und Terrassen: ca. 50 %
+    • Gartenflächen: ca. 10 %
+    • Garagen: ca. 50 %
+    • Überdachte Stellplätze: ca. 40 %
+    • Nicht überdachte Stellplätze: ca. 25 %
+    • Grundstücksflächen bei Villen: ca. 4 - 7 %
+    • Private Schwimmbäder: ca. 50 - 70 %
+    • Gemeinschaftsflächen bei Neubauten: ca. 2 - 4 %
+
+Beispiel: Eine Terrasse mit 30 m² wird – bei einem Anrechnungsfaktor von 50 % – mit 15 m² in die Verkaufsfläche einbezogen (30 m² × 0,5 = 15 m²).
+
+Hinweis: Abhängig vom Objekt, insbesondere bei Neubau-Wohnungen, können Flächen wie Garagen oder Stellplätze von der Verkaufsflächenberechnung ausgenommen sein. In diesem Fall werden sie gesondert als Pauschalpreis angegeben.
+
+Diese Berechnungsmethode ermöglicht eine einheitliche und vergleichbare Flächenangabe und berücksichtigt neben den Hauptwohnräumen auch alle relevanten Zusatzflächen.
+**Bruttofläche (Superficie Lorda)**
+Die Bruttofläche ist die Gesamtfläche aller Innenräume einer Immobilie, sowohl der bewohnbaren als auch der nicht bewohnbaren Flächen. Die nicht bewohnbaren Flächen, wie Kellergeschosse werden meistens nur zu einem Anteil, wie etwa einem Drittel einberechnet. Die Bruttofläche umfasst die Innenwände und Außenwände, schließt jedoch sekundäre Außenflächen wie Balkone, Terrassen und Gärten aus.","Die sogenannte Handelsfläche – auch als Verkaufsfläche bezeichnet (italienisch: superficie commerciale) – ist ein standardisiertes Berechnungsverfahren, das beim Verkauf von Immobilien in Italien Anwendung findet.
+Es geht über die reine Wohnfläche hinaus und wird in der Regel von Immobilienportalen, in Werbematerialien und Exposés verwendet.
+
+**Innenräume**
+    • Die gesamte Wohnfläche inklusive Innen- und Außenwände wird berücksichtigt. 
+    • Gemeinsame Trennwände (z. B. zwischen zwei Einheiten) werden zur Hälfte angerechnet.
+
+**NEBENFLÄCHEN**
+
+Nebenflächen fließen anteilig mit reduzierten Bewertungsansätzen in die Verkaufsfläche ein. Die zugrunde liegenden Prozentsätze orientieren sich an marktüblichen Richtwerten und können je nach Objektart, Wertigkeit und Nutzbarkeit innerhalb eines gewissen Rahmens variieren:
+    • Kellerräume: ca. 35 %
+    • Tavernen und gut nutzbare Kellergeschosse: ca. 50 %
+    • Nebenflächen mit hoher Nutzbarkeit (z.B. gut nutzbare Untergeschossräume mit Tageslicht und wohnlicher Ausstattung): ca. 75 %
+    • Balkone und Terrassen: ca. 50 %
+    • Gartenflächen: ca. 10 %
+    • Garagen: ca. 50 %
+    • Überdachte Stellplätze: ca. 40 %
+    • Nicht überdachte Stellplätze: ca. 25 %
+    • Grundstücksflächen bei Villen: ca. 4 - 7 %
+    • Private Schwimmbäder: ca. 50 - 70 %
+    • Gemeinschaftsflächen bei Neubauten: ca. 2 - 4 %
+
+Beispiel: Eine Terrasse mit 30 m² wird – bei einem Anrechnungsfaktor von 50 % – mit 15 m² in die Verkaufsfläche einbezogen (30 m² × 0,5 = 15 m²).
+
+Hinweis: Abhängig vom Objekt, insbesondere bei Neubau-Wohnungen, können Flächen wie Garagen oder Stellplätze von der Verkaufsflächenberechnung ausgenommen sein. In diesem Fall werden sie gesondert als Pauschalpreis angegeben.
+
+Diese Berechnungsmethode ermöglicht eine einheitliche und vergleichbare Flächenangabe und berücksichtigt neben den Hauptwohnräumen auch alle relevanten Zusatzflächen.
+**Bruttofläche (Superficie Lorda)**
+Die Bruttofläche ist die Gesamtfläche aller Innenräume einer Immobilie, sowohl der bewohnbaren als auch der nicht bewohnbaren Flächen. Die nicht bewohnbaren Flächen, wie Kellergeschosse werden meistens nur zu einem Anteil, wie etwa einem Drittel einberechnet. Die Bruttofläche umfasst die Innenwände und Außenwände, schließt jedoch sekundäre Außenflächen wie Balkone, Terrassen und Gärten aus.","Die sogenannte Handelsfläche – auch als Verkaufsfläche bezeichnet (italienisch: superficie commerciale) – ist ein standardisiertes Berechnungsverfahren, das beim Verkauf von Immobilien in Italien Anwendung findet.
+Es geht über die reine Wohnfläche hinaus und wird in der Regel von Immobilienportalen, in Werbematerialien und Exposés verwendet.
+
+**Innenräume**
+    • Die gesamte Wohnfläche inklusive Innen- und Außenwände wird berücksichtigt. 
+    • Gemeinsame Trennwände (z. B. zwischen zwei Einheiten) werden zur Hälfte angerechnet.
+
+**NEBENFLÄCHEN**
+
+Nebenflächen fließen anteilig mit reduzierten Bewertungsansätzen in die Verkaufsfläche ein. Die zugrunde liegenden Prozentsätze orientieren sich an marktüblichen Richtwerten und können je nach Objektart, Wertigkeit und Nutzbarkeit innerhalb eines gewissen Rahmens variieren:
+    • Kellerräume: ca. 35 %
+    • Tavernen und gut nutzbare Kellergeschosse: ca. 50 %
+    • Nebenflächen mit hoher Nutzbarkeit (z.B. gut nutzbare Untergeschossräume mit Tageslicht und wohnlicher Ausstattung): ca. 75 %
+    • Balkone und Terrassen: ca. 50 %
+    • Gartenflächen: ca. 10 %
+    • Garagen: ca. 50 %
+    • Überdachte Stellplätze: ca. 40 %
+    • Nicht überdachte Stellplätze: ca. 25 %
+    • Grundstücksflächen bei Villen: ca. 4 - 7 %
+    • Private Schwimmbäder: ca. 50 - 70 %
+    • Gemeinschaftsflächen bei Neubauten: ca. 2 - 4 %
+
+Beispiel: Eine Terrasse mit 30 m² wird – bei einem Anrechnungsfaktor von 50 % – mit 15 m² in die Verkaufsfläche einbezogen (30 m² × 0,5 = 15 m²).
+
+Hinweis: Abhängig vom Objekt, insbesondere bei Neubau-Wohnungen, können Flächen wie Garagen oder Stellplätze von der Verkaufsflächenberechnung ausgenommen sein. In diesem Fall werden sie gesondert als Pauschalpreis angegeben.
+
+Diese Berechnungsmethode ermöglicht eine einheitliche und vergleichbare Flächenangabe und berücksichtigt neben den Hauptwohnräumen auch alle relevanten Zusatzflächen.
+**Bruttofläche (Superficie Lorda)**
+Die Bruttofläche ist die Gesamtfläche aller Innenräume einer Immobilie, sowohl der bewohnbaren als auch der nicht bewohnbaren Flächen. Die nicht bewohnbaren Flächen, wie Kellergeschosse werden meistens nur zu einem Anteil, wie etwa einem Drittel einberechnet. Die Bruttofläche umfasst die Innenwände und Außenwände, schließt jedoch sekundäre Außenflächen wie Balkone, Terrassen und Gärten aus."
+PROVISION_TEXT,"
+Hinweis zur Maklertätigkeit und Provisionsansprüche
+Mit der Anfrage und/oder der Inanspruchnahme der von PREMIUM HOMES SRL angebotenen Dienstleistungen, mit Sitz in Corso Dante Alighieri Nr. 50, 37010 Torri del Benaco (VR), Steuernummer/MwSt. Nr. 05127340239, eingetragen im Handelsregister Verona (REA VR–472466), PEC: premiumhomesrl@legalmail.it, kommt eine Maklervereinbarung gemäß den Artikeln 1754 ff. des italienischen Zivilgesetzbuches (Codice Civile) zustande.
+Die Tätigkeit von PREMIUM HOMES SRL ist somit beruflicher Natur und stellt eine gesetzlich anerkannte Maklertätigkeit dar.
+Gemäß Art. 1755 des italienischen Zivilgesetzbuches besteht ein Anspruch auf Zahlung einer Provision durch beide Parteien, sofern der Abschluss des Geschäfts auf die Maklertätigkeit von PREMIUM HOMES SRL zurückzuführen ist.
+Der Käufer schuldet in diesem Zusammenhang eine Provision in Höhe von 4 % (vier Prozent) des Kaufpreises zuzüglich gesetzlicher Mehrwertsteuer, fällig bei Unterzeichnung des Kaufangebots oder des Kaufvorvertrages oder, falls nicht vorhanden, bei der notariellen Beurkundung.
+Hinweis: Die Immobilienangebote sind nicht verbindlich, können Änderungen unterliegen und erfolgen unter dem Vorbehalt von Irrtümern, Auslassungen oder Zwischenverkauf, da sie auf Informationen beruhen, die direkt vom Verkäufer bereitgestellt wurden.
+Alle Unterlagen und Informationen zu den Immobilien sind vertraulich und ausschließlich für den interessierten Kunden bestimmt, der bei PREMIUM HOMES SRL eine schriftliche oder telefonische Anfrage gestellt hat.
+Die Weitergabe an Dritte ist nur mit schriftlicher Genehmigung durch PREMIUM HOMES SRL gestattet. Eine unbefugte Weitergabe stellt eine Verletzung dar und verpflichtet zum Schadensersatz zugunsten von PREMIUM HOMES SRL.
+","
+Hinweis zur Maklertätigkeit und Provisionsansprüche
+Mit der Anfrage und/oder der Inanspruchnahme der von PREMIUM HOMES SRL angebotenen Dienstleistungen, mit Sitz in Corso Dante Alighieri Nr. 50, 37010 Torri del Benaco (VR), Steuernummer/MwSt. Nr. 05127340239, eingetragen im Handelsregister Verona (REA VR–472466), PEC: premiumhomesrl@legalmail.it, kommt eine Maklervereinbarung gemäß den Artikeln 1754 ff. des italienischen Zivilgesetzbuches (Codice Civile) zustande.
+Die Tätigkeit von PREMIUM HOMES SRL ist somit beruflicher Natur und stellt eine gesetzlich anerkannte Maklertätigkeit dar.
+Gemäß Art. 1755 des italienischen Zivilgesetzbuches besteht ein Anspruch auf Zahlung einer Provision durch beide Parteien, sofern der Abschluss des Geschäfts auf die Maklertätigkeit von PREMIUM HOMES SRL zurückzuführen ist.
+Der Käufer schuldet in diesem Zusammenhang eine Provision in Höhe von 4 % (vier Prozent) des Kaufpreises zuzüglich gesetzlicher Mehrwertsteuer, fällig bei Unterzeichnung des Kaufangebots oder des Kaufvorvertrages oder, falls nicht vorhanden, bei der notariellen Beurkundung.
+Hinweis: Die Immobilienangebote sind nicht verbindlich, können Änderungen unterliegen und erfolgen unter dem Vorbehalt von Irrtümern, Auslassungen oder Zwischenverkauf, da sie auf Informationen beruhen, die direkt vom Verkäufer bereitgestellt wurden.
+Alle Unterlagen und Informationen zu den Immobilien sind vertraulich und ausschließlich für den interessierten Kunden bestimmt, der bei PREMIUM HOMES SRL eine schriftliche oder telefonische Anfrage gestellt hat.
+Die Weitergabe an Dritte ist nur mit schriftlicher Genehmigung durch PREMIUM HOMES SRL gestattet. Eine unbefugte Weitergabe stellt eine Verletzung dar und verpflichtet zum Schadensersatz zugunsten von PREMIUM HOMES SRL.
+","
+Hinweis zur Maklertätigkeit und Provisionsansprüche
+Mit der Anfrage und/oder der Inanspruchnahme der von PREMIUM HOMES SRL angebotenen Dienstleistungen, mit Sitz in Corso Dante Alighieri Nr. 50, 37010 Torri del Benaco (VR), Steuernummer/MwSt. Nr. 05127340239, eingetragen im Handelsregister Verona (REA VR–472466), PEC: premiumhomesrl@legalmail.it, kommt eine Maklervereinbarung gemäß den Artikeln 1754 ff. des italienischen Zivilgesetzbuches (Codice Civile) zustande.
+Die Tätigkeit von PREMIUM HOMES SRL ist somit beruflicher Natur und stellt eine gesetzlich anerkannte Maklertätigkeit dar.
+Gemäß Art. 1755 des italienischen Zivilgesetzbuches besteht ein Anspruch auf Zahlung einer Provision durch beide Parteien, sofern der Abschluss des Geschäfts auf die Maklertätigkeit von PREMIUM HOMES SRL zurückzuführen ist.
+Der Käufer schuldet in diesem Zusammenhang eine Provision in Höhe von 4 % (vier Prozent) des Kaufpreises zuzüglich gesetzlicher Mehrwertsteuer, fällig bei Unterzeichnung des Kaufangebots oder des Kaufvorvertrages oder, falls nicht vorhanden, bei der notariellen Beurkundung.
+Hinweis: Die Immobilienangebote sind nicht verbindlich, können Änderungen unterliegen und erfolgen unter dem Vorbehalt von Irrtümern, Auslassungen oder Zwischenverkauf, da sie auf Informationen beruhen, die direkt vom Verkäufer bereitgestellt wurden.
+Alle Unterlagen und Informationen zu den Immobilien sind vertraulich und ausschließlich für den interessierten Kunden bestimmt, der bei PREMIUM HOMES SRL eine schriftliche oder telefonische Anfrage gestellt hat.
+Die Weitergabe an Dritte ist nur mit schriftlicher Genehmigung durch PREMIUM HOMES SRL gestattet. Eine unbefugte Weitergabe stellt eine Verletzung dar und verpflichtet zum Schadensersatz zugunsten von PREMIUM HOMES SRL.
+"
+PROVISION,Hinweis zur Maklertätigkeit und Provisionsansprüche,Hinweis zur Maklertätigkeit und Provisionsansprüche,Hinweis zur Maklertätigkeit und Provisionsansprüche

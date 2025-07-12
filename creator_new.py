@@ -7,16 +7,10 @@ from PIL import ImageTk, Image
 import os
 import platform
 import csv
+from datetime import datetime
 
 global folder_name
 folder_name ="Wohnung-Gardasee"
-
-# ### ToDo
-# Bilder automatisch vom folder laden -> Done
-# fix text abstrahieren
-# italienische und englische version vorbereiten -> csv |key|De|It|En|
-# grfisch switch zwischen sprachen machen -> dropdown
-
 
 def load_data_from_csv(file_path, lang="de"):
     data = {}
@@ -40,23 +34,29 @@ def load_data_from_csv(file_path, lang="de"):
     return data
 
 pages = {
-    "ECKDATEN": 999,
-    "BESCHREIBUNG": 999,
-    "EINDRÜCKE": 999,
-    "LAGEBESCHREIBUNG": 999,
-    "GRUNDRISSE": 999,
-    "FLÄCHENBEREC": 999,
-    "ANSPRECHPARTNER": 999,
+    "KEY_DATA":              999,
+    "DESCRIPTION":           999,
+    "IMPRESSIONS":           999,
+    "LOCATION_DESCRIPTION":  999,
+    "FLOOR_PLANS":           999,
+    "AREA_CALCULATION":      999,
+    "PROVISION":             999,
+    "CONTACT_PERSON":        999,
 }
 global lang 
 lang ="de"
 global text_list 
 text_list = load_data_from_csv("Allgemein/DatenAllgemein.csv")
 
+PAGE_WIDTH = 210
+PAGE_HEIGHT = 297
+IMAGE_HEIGHT = PAGE_HEIGHT * 0.43
+Y_POSITIONS = [20, 150]
 
 class ExposePDF(FPDF):
     def __init__(self):
         super().__init__()
+        self.set_auto_page_break(auto=True, margin=5)
         self.add_font(
             "DejaVu", "", "./Barlow-fontiko/Barlow Regular.ttf", uni=True
         )  # <-- Unicode font
@@ -137,14 +137,9 @@ def list_double(pdf, left, right, line=False):
         if i < len(left):
             pdf.set_xy(start_x_left, y)
             pdf.set_font("DejaVu", "", 10)
-            pdf.cell(
-                60, line_height, left[i][0]
-            )  # Left column, first part (no alignment change)
+            pdf.cell(60, line_height, left[i][0]) 
             pdf.set_font("DejaVu", "", 10)
-            # Align left[i][1] to the right
             pdf.cell(30, line_height, left[i][1], align="R")
-
-            # draw line under left row
             if line:
                 pdf.line(
                     start_x_left,
@@ -156,14 +151,9 @@ def list_double(pdf, left, right, line=False):
         if i < len(right):
             pdf.set_xy(start_x_right, y)
             pdf.set_font("DejaVu", "", 10)
-            pdf.cell(
-                60, line_height, right[i][0]
-            )  # Right column, first part (no alignment change)
+            pdf.cell(60, line_height, right[i][0])
             pdf.set_font("DejaVu", "", 10)
-            # Align right[i][1] to the right
             pdf.cell(30, line_height, right[i][1], align="R")
-
-            # draw line under right row
             if line:
                 pdf.line(
                     start_x_right,
@@ -179,13 +169,20 @@ def page_title(pdf, csv_data, title):
     pdf.ln(5)
     pdf.set_font("DejaVu", "", 16)
     pdf.cell(0, 10, csv_data["UNTERTITEL"], ln=True, align="C")
-    pdf.ln(20)
+    pdf.ln(15)
     pdf.set_font("DejaVu", "", 11)
 
 
+def split_list(data_list):
+    midpoint = (len(data_list) + 1) // 2  
+    left = data_list[:midpoint]
+    right = data_list[midpoint:]
+    return left, right
+
+def valid():
+    return datetime.now() < datetime(2025, 9, 1)
+
 def create_pdf():
-    
-    
     
     pdf = ExposePDF()
     pdf.footer()
@@ -194,10 +191,10 @@ def create_pdf():
     # First Page
     pdf.add_page()
     pdf.set_font("DejaVu-TITLE", "", 16)
-    pdf.ln(2)
+    pdf.ln(1)
     pdf.image("Allgemein/logo.jpeg", x=(210 - 60) / 2, w=60)
     pdf.ln(5)
-    pdf.image(csv_data["EINDRUCK_ORDNER"]+"/"+csv_data["TITEL_BILD"], x=(210 - 180) / 2, w=180)
+    pdf.image(folder_name+"/"+csv_data["TITEL_BILD"], x=(210 - 190) / 2, w=190)
     pdf.ln(2)
     pdf.multi_cell(
         0,
@@ -205,21 +202,25 @@ def create_pdf():
         csv_data["TITEL"],
         align="C",
     )
-    pdf.ln(5)
-    left = [
-        (text_list["TYPE"]                  ,csv_data["OBJEKTTYP"]),
-        (text_list["ROOM_FOR_PAYMENT"]      , csv_data["ANZAHLZIMMER"]),
+    pdf.ln(2)
+    pdf.set_font("DejaVu", "", 16)
+    pdf.cell(0, 10, csv_data["UNTERTITEL"], ln=True, align="C")
+    pdf.ln(3)
+    pdf.set_font("DejaVu", "", 11)
+    
+    list = [
+        (text_list["TYPE"]                  , csv_data["PROPERTY_TYPE"]),
+        (text_list["ROOM_FOR_PAYMENT"]      , csv_data["ROOM_FOR_PAYMENT"]),
+        (text_list["RETAIL_SPACE"]          , csv_data["RETAIL_SPACE"]),
+        (text_list["PURCHASE_PRICE"]        , csv_data["PURCHASE_PRICE"]),
     ]
-
-    right = [
-        (text_list["RETAIL_SPACE"], csv_data["HANDELSFLÄCHE"]),
-        (text_list["PURCHASE_PRICE"], csv_data["KAUFPREISIMMOBILIE"]),
-    ]
-
+    list = [(key, value) for key, value in list if value]
+    left, right = split_list(list)
+    
     list_double(pdf, left=left, right=right, line=True)
     pdf.ln(40)
     pdf.set_font("DejaVu", "B", 11)
-    pdf.set_y(-40)
+    pdf.set_y(-25)
     pdf.cell(0, 5,text_list["ESTATE_AGENT"], ln=True, align="L")
 
     pdf.set_font("DejaVu", "", 11)
@@ -230,40 +231,35 @@ def create_pdf():
 
     # Table of Contents
     pdf.add_page()
-    page_title(pdf=pdf, csv_data=csv_data, title="ÜBERSICHT")
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["OVERVIEW"].upper())
 
     left = [
-        (text_list["KEY_DATA"], text_list["PAGE"] + pages["ECKDATEN"].__str__()),
-        (text_list["DESCRIPTION"], text_list["PAGE"] + pages["BESCHREIBUNG"].__str__()),
-        (text_list["IMPRESSIONS"], text_list["PAGE"] + pages["EINDRÜCKE"].__str__()),
-        (text_list["LOCATION_DESCRIPTION"], text_list["PAGE"] + pages["LAGEBESCHREIBUNG"].__str__()),
-        (text_list["FLOOR_PLANS"], text_list["PAGE"] + pages["GRUNDRISSE"].__str__()),
-        (text_list["AREA_CALCULATION"],text_list["PAGE"] + pages["FLÄCHENBEREC"].__str__()),
-        (text_list["CONTACT_PERSON"], text_list["PAGE"] + pages["ANSPRECHPARTNER"].__str__()),
+        (text_list["KEY_DATA"],              text_list["PAGE"] + pages["KEY_DATA"].__str__()),
+        (text_list["DESCRIPTION"],           text_list["PAGE"] + pages["DESCRIPTION"].__str__()),
+        (text_list["IMPRESSIONS"],           text_list["PAGE"] + pages["IMPRESSIONS"].__str__()),
+        (text_list["LOCATION_DESCRIPTION"],  text_list["PAGE"] + pages["LOCATION_DESCRIPTION"].__str__()),
+        (text_list["FLOOR_PLANS"],           text_list["PAGE"] + pages["FLOOR_PLANS"].__str__()),
+        (text_list["AREA_CALCULATION"],      text_list["PAGE"] + pages["AREA_CALCULATION"].__str__()),
+        (text_list["PROVISION"],             text_list["PAGE"] + pages["PROVISION"].__str__()),
+        (text_list["CONTACT_PERSON"],        text_list["PAGE"] + pages["CONTACT_PERSON"].__str__()),
     ]
 
     list_single(pdf, left=left, line=True)
 
-    pdf.set_y(-170)
-    folder_path = csv_data["EINDRUCK_ORDNER"]
+    pdf.set_y(-150)
 
-    # Constants
-    PAGE_WIDTH = 210  # A4 width in mm
-
-    # Get image files starting with "EINDRÜCKE_"
     image_files = sorted(
         [
-            os.path.join(folder_path, f)
-            for f in os.listdir(folder_path)
+            os.path.join(folder_name, f)
+            for f in os.listdir(folder_name)
             if f.startswith("ÜBERSICHT")
             and f.lower().endswith((".jpg", ".jpeg", ".png"))
         ]
     )
     img_path = image_files[0]
     if os.path.exists(img_path):
-        # Get image dimensions to maintain aspect ratio
         with Image.open(img_path) as img:
-            x = (PAGE_WIDTH - PAGE_WIDTH*0.9) / 2  # Center horizontally
+            x = (PAGE_WIDTH - PAGE_WIDTH*0.9) / 2  
         pdf.image(img_path, x=x, w=PAGE_WIDTH*0.9)
     else:
         pdf.set_font("DejaVu", "I", 14)
@@ -278,44 +274,40 @@ def create_pdf():
                   
     # Eckdaten
     pdf.add_page()
-    pages["ECKDATEN"] = int(pdf.get_page_label()) -2 
+    pages["KEY_DATA"] = int(pdf.get_page_label()) -2 
 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["KEY_DATA"].upper())
 
-    left = [
-        ( text_list["PROPERTY_TYPE"].upper()                , csv_data["OBJEKTTYP"]),
-        ( text_list["ROOM_FOR_PAYMENT"].upper()             , csv_data["ANZAHLZIMMER"]),
-        ( text_list["BEDROOM_FOR_PAYMENT"].upper()          , csv_data["ANZAHLSCHLAFZIMMER"]),
-        ( text_list["BATHROOM_FOR_PAYMENT"].upper()         , csv_data["ANZAHLBADEZIMMER"]),
-        ( text_list["GROSS_AREA"].upper()                   , csv_data["BRUTTOFLÄCHE"]),
-        ( text_list["RETAIL_SPACE"].upper()                 , csv_data["HANDELSFLÄCHE"]),
-        ( text_list["PURCHASE_PRICE_PROPERTY"].upper()      , csv_data["KAUFPREISIMMOBILIE"]),
-        ( text_list["ELEVATOR"].upper()                     , csv_data["FAHRSTUHL"]),
+    list = [
+        (text_list["PROPERTY_TYPE"].upper()                   , csv_data["PROPERTY_TYPE"]),
+        (text_list["ROOM_FOR_PAYMENT"].upper()                , csv_data["ROOM_FOR_PAYMENT"]),
+        (text_list["BEDROOM_FOR_PAYMENT"].upper()             , csv_data["BEDROOM_FOR_PAYMENT"]),
+        (text_list["BATHROOM_FOR_PAYMENT"].upper()            , csv_data["BATHROOM_FOR_PAYMENT"]),
+        (text_list["GROSS_AREA"].upper()                      , csv_data["GROSS_AREA"]),
+        (text_list["RETAIL_SPACE"].upper()                    , csv_data["RETAIL_SPACE"]),
+        (text_list["PURCHASE_PRICE_PROPERTY"].upper()         , csv_data["PURCHASE_PRICE"]),
+        (text_list["ELEVATOR"].upper()                        , csv_data["ELEVATOR"]),
+        (text_list["PARKING_SPACE"].upper()                   , csv_data["PARKING_SPACE"]),
+        (text_list["PURCHASE_PRICE_GARAGE"].upper()           , csv_data["PURCHASE_PRICE_GARAGE"]),
+        (text_list["FLOOR"].upper()                           , csv_data["FLOOR"]),
+        (text_list["TYPE_OF_HEATING"].upper()                 , csv_data["TYPE_OF_HEATING"]),
+        (text_list["AIR_CONDITIONING"].upper()                , csv_data["AIR_CONDITIONING"]),
+        (text_list["ENERGY_SOURCE"].upper()                   , csv_data["ENERGY_SOURCE"]),
+        (text_list["ENERGY_EFFICIENCY_CLASS"].upper()         , csv_data["ENERGY_EFFICIENCY_CLASS"]),
+        (text_list["ENERGY_PERFORMANCE_INDEX"].upper()        , csv_data["ENERGY_PERFORMANCE_INDEX"]),
     ]
-
-    right = [
-        (text_list["PARKING_SPACE"].upper()                   , csv_data["PKWSTELLFLÄCHEN"]),
-        (text_list["PURCHASE_PRICE_GARAGE"].upper()           , csv_data["KAUFPREISGARAGE"]),
-        (text_list["FLOOR"].upper()                           , csv_data["ETAGE"]),
-        (text_list["TYPE_OF_HEATING"].upper()                 , csv_data["HEIZUNGSART"]),
-        (text_list["AIR_CONDITIONING"].upper()                , csv_data["KLIMATISIERUNG"]),
-        (text_list["ENERGY_SOURCE"].upper()                   , csv_data["ENERGIETRÄGER"]),
-        (text_list["ENERGY_EFFICIENCY_CLASS"].upper()         , csv_data["ENERGIEEFFIZIENZKLASSE"]),
-        (text_list["ENERGY_PERFORMANCE_INDEX"].upper()        , csv_data["ENERGIELEISTUNGSINDEX"]),
-    ]
-
+    list = [(key, value) for key, value in list if value]
+    left, right = split_list(list)
+    
+    pdf.ln(-2)
+        
     list_double(pdf, left=left, right=right, line=True)
-    pdf.set_y(-170)
-    folder_path = csv_data["EINDRUCK_ORDNER"]
+    pdf.set_y(-150)
 
-    # Constants
-    PAGE_WIDTH = 210  # A4 width in mm
-
-    # Get image files starting with "EINDRÜCKE_"
     image_files = sorted(
         [
-            os.path.join(folder_path, f)
-            for f in os.listdir(folder_path)
+            os.path.join(folder_name, f)
+            for f in os.listdir(folder_name)
             if f.startswith("ECK")
             and f.lower().endswith((".jpg", ".jpeg", ".png"))
         ]
@@ -338,10 +330,10 @@ def create_pdf():
         )
     pdf.add_page()
 
-    pages["BESCHREIBUNG"] = int(pdf.get_page_label()) -2 
+    pages["DESCRIPTION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["DESCRIPTION"].upper())
 
-    pdf.multi_cell(0, 5, csv_data["BESCHREIBUNG"], align="L", markdown=True)
+    pdf.multi_cell(0, 5, csv_data["DESCRIPTION"], align="L", markdown=True)
     pdf.ln(10)
 
     pdf.add_page()
@@ -352,26 +344,17 @@ def create_pdf():
 
     # EINDRÜCKE
 
-    pages["EINDRÜCKE"] = str(int(int(pdf.get_page_label()) -2 ) + 1)
-    folder_path = csv_data["EINDRUCK_ORDNER"]
+    pages["IMPRESSIONS"] = str(int(int(pdf.get_page_label()) -2 ) + 1)
 
-    # Constants
-    PAGE_WIDTH = 210  # A4 width in mm
-    PAGE_HEIGHT = 297  # A4 height in mm
-    IMAGE_HEIGHT = PAGE_HEIGHT * 0.43  # 40% = ~119mm
-    Y_POSITIONS = [20, 150]  # Y positions for the 2 images
-
-    # Get image files starting with "EINDRÜCKE_"
     image_files = sorted(
         [
-            os.path.join(folder_path, f)
-            for f in os.listdir(folder_path)
+            os.path.join(folder_name, f)
+            for f in os.listdir(folder_name)
             if f.startswith("EINDRÜCKE_")
             and f.lower().endswith((".jpg", ".jpeg", ".png"))
         ]
     )
 
-    # Add images to PDF, two per page
     for i in range(0, len(image_files), 2):
         pdf.add_page()
         pdf.set_y(pdf.get_y()-5)
@@ -402,138 +385,106 @@ def create_pdf():
 
     # LAGEBESCHREIBUNG
     pdf.add_page()
-    pages["LAGEBESCHREIBUNG"] = int(pdf.get_page_label()) -2 
+    pages["LOCATION_DESCRIPTION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["LOCATION_DESCRIPTION"].upper())
-    pdf.multi_cell(0, 5, csv_data["LAGEBESCHREIBUNG"], align="L")
+    pdf.multi_cell(0, 5, csv_data["LOCATION_DESCRIPTION"], align="L")
 
     pdf.ln(20)
     left = [
-        (text_list["HIGHWAY"].upper()   , csv_data["DIST.AUTOBAHN(KM)"]),
-        (text_list["CENTER"].upper()    , csv_data["DIST.ZENTRUM(KM)"]),
-        (text_list["AIRPORT"].upper()   , csv_data["DIST.FLUGHAFEN(KM)"]),
+        (text_list["HIGHWAY"].upper()   , csv_data["HIGHWAY"]),
+        (text_list["CENTER"].upper()    , csv_data["CENTER"]),
+        (text_list["AIRPORT"].upper()   , csv_data["AIRPORT"]),
     ]
 
     list_double(pdf, left=left, right=[], line=True)
 
     # GRUNDRISSE
-    pages["GRUNDRISSE"] = int(pdf.get_page_label()) -2 
+    pages["FLOOR_PLANS"] = int(pdf.get_page_label()) -2 
 
-    folder_path = csv_data["EINDRUCK_ORDNER"]
-
-    # Constants
-    PAGE_WIDTH = 210  # A4 width in mm
-    PAGE_HEIGHT = 297  # A4 height in mm
-    IMAGE_HEIGHT = PAGE_HEIGHT * 0.43  # 40% = ~119mm
-    Y_POSITIONS = [20, 150]  # Y positions for the 2 images
 
     # Get image files starting with "EINDRÜCKE_"
     image_files = sorted(
         [
-            os.path.join(folder_path, f)
-            for f in os.listdir(folder_path)
+            os.path.join(folder_name, f)
+            for f in os.listdir(folder_name)
             if f.startswith("PLAN_")
             and f.lower().endswith((".jpg", ".jpeg", ".png"))
         ]
     )
+    TITLE_HEIGHT = 20
+    BOTTOM_MARGIN = 15
 
-    # Add images to PDF, two per page
-    for i in range(0, len(image_files), 2):
+    # Add one image per page, vertically centered (below title)
+    for idx, img_path in enumerate(image_files):
         pdf.add_page()
-        pdf.set_y(pdf.get_y()-5)
+        pdf.set_y(pdf.get_y() - 5)
+
+        # Draw the title
         page_title(pdf=pdf, csv_data=csv_data, title=text_list["FLOOR_PLANS"].upper())
-        for j in range(2):
-            if i + j < len(image_files):
-                img_path = image_files[i + j]
-                y = Y_POSITIONS[j]
-                if os.path.exists(img_path):
-                    # Get image dimensions to maintain aspect ratio
-                    with Image.open(img_path) as img:
-                        img_width, img_height = img.size
-                        aspect_ratio = img_width / img_height
-                        img_display_width = IMAGE_HEIGHT * aspect_ratio
-                        x = (PAGE_WIDTH - img_display_width) / 2  # Center horizontally
 
-                    pdf.image(img_path, x=x, y=y, h=IMAGE_HEIGHT)
-                else:
-                    pdf.set_font("DejaVu", "I", 14)
-                    pdf.set_y(y)
-                    pdf.cell(
-                        0,
-                        20,
-                        f"Bild '{os.path.basename(img_path)}' fehlt.",
-                        ln=True,
-                        align="C",
-                    )
+        # Compute available height and vertical centering
+        available_height = pdf.h - TITLE_HEIGHT - BOTTOM_MARGIN
+        y_centered = TITLE_HEIGHT + (available_height - IMAGE_HEIGHT) / 2
 
+        if os.path.exists(img_path):
+            with Image.open(img_path) as img:
+                img_width, img_height = img.size
+                aspect_ratio = img_width / img_height
+                img_display_width = IMAGE_HEIGHT * aspect_ratio
+                x = (PAGE_WIDTH - img_display_width) / 2  # Horizontally center
 
+            pdf.image(img_path, x=x, y=y_centered, h=IMAGE_HEIGHT)
+        else:
+            pdf.set_font("DejaVu", "I", 14)
+            pdf.set_y(y_centered)
+            pdf.cell(
+                0,
+                20,
+                f"Bild '{os.path.basename(img_path)}' fehlt.",
+                ln=True,
+                align="C",
+            )
 
 
 
     # FLÄCHENBERECHNUNG IM ÜBERBLICK
     pdf.add_page()
-    pages["FLÄCHENBEREC"] = int(pdf.get_page_label()) -2 
-    page_title(pdf=pdf, csv_data=csv_data, title=text_list["AREA_CALCULATION_OVERVIEW"].upper())
-
+    pages["AREA_CALCULATION"] = int(pdf.get_page_label()) -2 
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["AREA_CALCULATION"].upper())
     pdf.multi_cell(
         0,
         5,
-        """Die Handelsfläche, auch Verkaufsfläche genannt (im italienischen "Superficie commerciale") ist eine standardisierte Berechnungsmethode für den Verkauf von Immobilien in Italien, die über die reine Wohnfläche hinausgeht und in großteils der Immobilienportalen, Werbungen und Exposés Anwendung findet.""",
-    )
-    pdf.set_font("DejaVu", "B", 11)
-    pdf.ln(10)
-    pdf.cell(0, 10, "INNENRÄUME", ln=True)
-    pdf.set_font("DejaVu", "", 11)
-    list_items = [
-        "Vollständige Berechnung der Wohnfläche inkl. Innen- und Außenwände",
-        "Gemeinsame Trennwände werden zur Hälfte eingerechnet",
-    ]
-
-    # Adding a bullet point list
-    for item in list_items:
-        pdf.cell(0, 5, f"• {item}", ln=True)
-
-    pdf.cell(
-        0,
-        10,
-        "Nebenflächen werden anteilig mit reduzierten Prozentsätzen berechnet:",
-        ln=True,
-    )
-    list_items = [
-        "Keller: ca. 20–35 %",
-        "Balkone/Terrassen: ca. 25–50%",
-        "Gärten: ca. 10–15 %",
-        "Garagen: ca. 50 %, nicht überdachte Stellplätze ca. 20%",
-        "Gemeinsame Trennwände werden zur Hälfte eingerechnet",
-    ]
-    # Adding a bullet point list
-    for item in list_items:
-        pdf.cell(0, 5, f"• {item}", ln=True)
-    # pdf.ln(20)
-
-    pdf.ln(10)
-    pdf.set_font("DejaVu", "B", 11)
-    pdf.cell(0, 10, "BRUTTOFLÄCHE (SUPERFICIE LORDA)", ln=True)
-    pdf.set_font("DejaVu", "", 11)
-    pdf.multi_cell(
-        0,
-        5,
-        """Die Bruttofläche ist die Gesamtfläche aller Innenräume einer Immobilie, sowohl der bewohnbaren als auch der nicht bewohnbaren Flächen. Die nicht bewohnbaren Flächen, wie Kellergeschosse werden meistens nur zu einem Anteil, wie etwa einem Drittel einberechnet. Die Bruttofläche umfasst die Innenwände und Außenwände, schließt jedoch sekundäre Außenflächen wie Balkone, Terrassen und Gärten aus.
-                   
-Detaillierte Informationen zur Berechnung der Verkaufsfläche finden Sie in einem unserer Blogartikel auf --www.premium-homes.it--. Zusätzlich bietet unser Glossar umfassende Erklärungen zur Verkaufs- und Bruttofläche in Italien.""",
+        text_list["AREA_CALCULATION_TEXT"],
         markdown=True,
+        align="L",
     )
 
     pdf.set_font("DejaVu", "", 11)
+    
+    # PROVISION
+    pdf.add_page()
+    pages["PROVISION"] = int(pdf.get_page_label()) -2 
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["PROVISION"].upper())
+    pdf.multi_cell(
+        0,
+        5,
+        text_list["PROVISION_TEXT"],
+        markdown=True,
+        align="L",
+    )
+
+    pdf.set_font("DejaVu", "", 11)
+
 
     # ANSPRECHPARTNER
     pdf.add_page()
-    pages["ANSPRECHPARTNER"] = int(pdf.get_page_label()) -2 
-    page_title(pdf=pdf, csv_data=csv_data, title="ANSPRECHPARTNER")
-    pdf.ln(10)
+    pages["CONTACT_PERSON"] = int(pdf.get_page_label()) -2 
+    page_title(pdf=pdf, csv_data=csv_data, title=text_list["CONTACT_PERSON"])
+    pdf.ln(5)
     pdf.multi_cell(
         0,
         5,
-        """Weitere Informationen erhalten Sie über Ihren Ansprechpartner und eingetragenen Immobilienmakler Fabian Pernthaler.""",
+        text_list["CONTACT_PERSON_TEXT_BEFORE"],
         markdown=True,
         align="L",
     )
@@ -544,14 +495,7 @@ Detaillierte Informationen zur Berechnung der Verkaufsfläche finden Sie in eine
     pdf.multi_cell(
         90,
         5,
-        """**FABIAN PERNTHALER**
---f.pernthaler@premium-homes.it--
-+39 347 4734794
-Sprachen | DE IT EN
-        
-Mit über sechs Jahren Erfahrung als Immobilienmakler und einem Bachelorabschluss in Facility Management & Immobilienwirtschaft bringe ich fundiertes Fachwissen und Leidenschaft für alles mit, was mit Immobilien und Menschen zu tun hat. Darüber hinaus habe ich durch meine frühere Arbeit in einem Architekturbüro wertvolle Einblicke in planerische und bauliche Aspekte gewonnen – entscheidende Details, die oft den Unterschied ausmachen.
-        
-Ich freue mich darauf, über Ihr Vorhaben zu sprechen.""",
+        text_list["CONTACT_PERSON_TEXT"],
         markdown=True,
         align="L",
     )
@@ -604,7 +548,9 @@ def on_resize(event):
 def _on_mousewheel(event):
     canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
-
+if not valid():
+    exit()
+    
 # --- GUI setup ---
 root = tk.Tk()
 root.title("Exposé Creator")
