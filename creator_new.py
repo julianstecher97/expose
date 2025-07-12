@@ -274,7 +274,7 @@ def create_pdf():
                   
     # Eckdaten
     pdf.add_page()
-    pages["KEY_DATA"] = int(pdf.get_page_label()) -2 
+#    pages["KEY_DATA"] = int(pdf.get_page_label()) -2 
 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["KEY_DATA"].upper())
 
