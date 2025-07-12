@@ -330,7 +330,7 @@ def create_pdf():
         )
     pdf.add_page()
 
-    pages["DESCRIPTION"] = int(pdf.get_page_label()) -2 
+   # pages["DESCRIPTION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["DESCRIPTION"].upper())
 
     pdf.multi_cell(0, 5, csv_data["DESCRIPTION"], align="L", markdown=True)
@@ -344,7 +344,7 @@ def create_pdf():
 
     # EINDRÜCKE
 
-    pages["IMPRESSIONS"] = str(int(int(pdf.get_page_label()) -2 ) + 1)
+    # pages["IMPRESSIONS"] = str(int(int(pdf.get_page_label()) -2 ) + 1)
 
     image_files = sorted(
         [
@@ -385,7 +385,7 @@ def create_pdf():
 
     # LAGEBESCHREIBUNG
     pdf.add_page()
-    pages["LOCATION_DESCRIPTION"] = int(pdf.get_page_label()) -2 
+    # pages["LOCATION_DESCRIPTION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["LOCATION_DESCRIPTION"].upper())
     pdf.multi_cell(0, 5, csv_data["LOCATION_DESCRIPTION"], align="L")
 
@@ -399,7 +399,7 @@ def create_pdf():
     list_double(pdf, left=left, right=[], line=True)
 
     # GRUNDRISSE
-    pages["FLOOR_PLANS"] = int(pdf.get_page_label()) -2 
+    # pages["FLOOR_PLANS"] = int(pdf.get_page_label()) -2 
 
 
     # Get image files starting with "EINDRÜCKE_"
@@ -449,7 +449,7 @@ def create_pdf():
 
     # FLÄCHENBERECHNUNG IM ÜBERBLICK
     pdf.add_page()
-    pages["AREA_CALCULATION"] = int(pdf.get_page_label()) -2 
+    # pages["AREA_CALCULATION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["AREA_CALCULATION"].upper())
     pdf.multi_cell(
         0,
@@ -463,7 +463,7 @@ def create_pdf():
     
     # PROVISION
     pdf.add_page()
-    pages["PROVISION"] = int(pdf.get_page_label()) -2 
+    # pages["PROVISION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["PROVISION"].upper())
     pdf.multi_cell(
         0,
@@ -478,7 +478,7 @@ def create_pdf():
 
     # ANSPRECHPARTNER
     pdf.add_page()
-    pages["CONTACT_PERSON"] = int(pdf.get_page_label()) -2 
+    # pages["CONTACT_PERSON"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["CONTACT_PERSON"])
     pdf.ln(5)
     pdf.multi_cell(
