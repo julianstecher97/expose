@@ -333,7 +333,7 @@ def create_pdf():
    # pages["DESCRIPTION"] = int(pdf.get_page_label()) -2 
     page_title(pdf=pdf, csv_data=csv_data, title=text_list["DESCRIPTION"].upper())
 
-    pdf.multi_cell(0, 5, csv_data["DESCRIPTION"], align="L", markdown=True)
+    pdf.multi_cell(0, 5, csv_data["DESCRIPTION"], align="L")
     pdf.ln(10)
 
     pdf.add_page()
@@ -455,7 +455,6 @@ def create_pdf():
         0,
         5,
         text_list["AREA_CALCULATION_TEXT"],
-        markdown=True,
         align="L",
     )
 
@@ -469,7 +468,6 @@ def create_pdf():
         0,
         5,
         text_list["PROVISION_TEXT"],
-        markdown=True,
         align="L",
     )
 
@@ -485,7 +483,6 @@ def create_pdf():
         0,
         5,
         text_list["CONTACT_PERSON_TEXT_BEFORE"],
-        markdown=True,
         align="L",
     )
     pdf.ln(10)
@@ -496,7 +493,6 @@ def create_pdf():
         90,
         5,
         text_list["CONTACT_PERSON_TEXT"],
-        markdown=True,
         align="L",
     )
     pdf.set_xy(10, y)
